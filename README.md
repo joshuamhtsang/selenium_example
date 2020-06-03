@@ -4,6 +4,7 @@ My Selenium playground.
 # Setup Instructions
 
 1. Install selenium with pip3.
+
     $ pip3 install selenium
 
 2. Add chromedriver to your path, you should download the
