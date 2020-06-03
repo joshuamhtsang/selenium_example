@@ -4,7 +4,6 @@ import time
 
 driver = webdriver.Chrome()
 driver.get("http://www.tiktok.com/trending")
-print(driver.page_source)
 # Get scroll height.
 last_height = driver.execute_script("return document.body.scrollHeight")
 while True:
@@ -17,5 +16,8 @@ while True:
     if new_height == last_height:
         break
     last_height = new_height
+
+    with open("page_source.html", 'w') as filehandle:
+        filehandle.write(driver.page_source)
 
 driver.close()
