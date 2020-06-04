@@ -10,7 +10,7 @@ while True:
     # Scroll down to the bottom.
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     # Wait to load the page.
-    time.sleep(20)
+    time.sleep(40)
     # Output html source to file.
     with open("page_source.html", 'w') as filehandle:
         filehandle.write(driver.page_source)
