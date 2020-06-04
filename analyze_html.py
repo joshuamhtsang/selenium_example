@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 
-with open("page_source_copy.html", "r") as f:
+with open("page_source.html", "r") as f:
     content = f.read()
 
     soup = BeautifulSoup(content, "lxml")
