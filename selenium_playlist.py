@@ -22,6 +22,7 @@ for i in range(0, 100):
     try:
         # Click on the 'Shuffle Play' button.
         driver.find_element_by_css_selector('.style__StyledPlayButton-pcl4lo-2.kyuMES').click()
+        time.sleep(30)
     except Exception as e:
         print("Nevermind...")
         print(e)
