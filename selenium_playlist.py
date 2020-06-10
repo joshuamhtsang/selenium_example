@@ -74,10 +74,10 @@ for i in range(0, 100):
         print("We already have this track.  Let's ignore.")
 
     # Click to the 'Skip Button' to load next track.
-    try:
-        driver.find_element_by_css_selector('.style__Button-m7wizi-2.style__SkipButton-m7wizi-6.ffePDT').click()
-    except:
-        driver.get(target_url)
-        continue
+    #try:
+    #    driver.find_element_by_css_selector('.style__Button-m7wizi-2.style__SkipButton-m7wizi-6.ffePDT').click()
+    #except:
+    #    driver.get(target_url)
+    #    continue
 
 driver.close()
