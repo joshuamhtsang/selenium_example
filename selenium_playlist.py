@@ -5,8 +5,10 @@ from bs4 import BeautifulSoup
 import subprocess
 import wget
 
+target_url = "https://www.playlist.com/playlist/top-50?id=5b57c297c1524302fd5079e3"
+
 driver = webdriver.Chrome()
-driver.get("https://www.playlist.com/playlist/top-50?id=5b57c297c1524302fd5079e3")
+driver.get(target_url)
 
 # Output html source to file.
 with open("page_source_{}.html".format('stage1'), 'w') as filehandle:
@@ -54,15 +56,24 @@ for i in range(0, 100):
     audio_filename = "{}_{}.mp3".format(trackArtist, trackName)
     if not os.path.exists(audio_filename):
         print("Saving: ", audio_filename)
-        wget.download(url, out=audio_filename)
-        #cmd = ['wget', 'limit-rate=100k', url, '-o', audio_filename]
-        #print(' '.join(cmd))
-        #subprocess.run(cmd)
+        try:
+            wget.download(url, out=audio_filename)
+            #cmd = ['wget', 'limit-rate=100k', url, '-o', audio_filename]
+            #print(' '.join(cmd))
+            #subprocess.run(cmd)
+        except:
+            # Refresh the page.
+            driver.get(target_url)
+            continue
         time.sleep(10)
     else:
         print("We already have this track.  Let's ignore.")
 
     # Click to the 'Skip Button' to load next track.
-    driver.find_element_by_css_selector('.style__Button-m7wizi-2.style__SkipButton-m7wizi-6.ffePDT').click()
+    try:
+        driver.find_element_by_css_selector('.style__Button-m7wizi-2.style__SkipButton-m7wizi-6.ffePDT').click()
+    except:
+        driver.get(target_url)
+        continue
 
 driver.close()
