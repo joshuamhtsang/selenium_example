@@ -46,8 +46,12 @@ for i in range(0, 100):
     url = tag[n]['src']
 
     # Get metadata of track.
-    trackName = parser.find("h2", class_='style__TrackName-sc-17zjedb-4 bRUDDK').contents[0]
-    trackArtist = parser.find("div", class_='style__TrackArtist-sc-17zjedb-5 hWbbiY').contents[0]
+    try:
+        trackName = parser.find("h2", class_='style__TrackName-sc-17zjedb-4 bRUDDK').contents[0]
+        trackArtist = parser.find("div", class_='style__TrackArtist-sc-17zjedb-5 hWbbiY').contents[0]
+    except:
+        driver.get(target_url)
+        continue
 
     print(trackName)
     print(trackArtist)
