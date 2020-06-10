@@ -2,7 +2,7 @@ from selenium import webdriver
 import time
 import os
 from bs4 import BeautifulSoup
-import wget
+import subprocess
 
 driver = webdriver.Chrome()
 driver.get("https://www.playlist.com/playlist/top-50?id=5b57c297c1524302fd5079e3")
@@ -16,7 +16,15 @@ driver.find_element_by_css_selector('.style__StyledPlayButton-pcl4lo-2.kyuMES').
 
 for i in range(0, 100):
     # Wait for webpage to load the audio src.
-    time.sleep(30)
+    time.sleep(180)
+
+    # Try click on 'Shuffle Play'.
+    try:
+        # Click on the 'Shuffle Play' button.
+        driver.find_element_by_css_selector('.style__StyledPlayButton-pcl4lo-2.kyuMES').click()
+    except Exception as e:
+        print("Nevermind...")
+        print(e)
 
     # Output html source to file.
     with open("page_source_{}.html".format('stage2'), 'w') as filehandle:
@@ -44,7 +52,8 @@ for i in range(0, 100):
     audio_filename = "{}_{}.mp3".format(trackArtist, trackName)
     if not os.path.exists(audio_filename):
         print("Saving: ", audio_filename)
-        wget.download(url, out=audio_filename)
+        #wget.download(url, out=audio_filename)
+        subprocess.run(['wget', 'limit-rate=100k', url, '-o', audio_filename])
     else:
         print("We already have this track.  Let's ignore.")
 
