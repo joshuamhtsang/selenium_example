@@ -3,6 +3,7 @@ import time
 import os
 from bs4 import BeautifulSoup
 import subprocess
+import wget
 
 driver = webdriver.Chrome()
 driver.get("https://www.playlist.com/playlist/top-50?id=5b57c297c1524302fd5079e3")
@@ -53,8 +54,11 @@ for i in range(0, 100):
     audio_filename = "{}_{}.mp3".format(trackArtist, trackName)
     if not os.path.exists(audio_filename):
         print("Saving: ", audio_filename)
-        #wget.download(url, out=audio_filename)
-        subprocess.run(['wget', 'limit-rate=100k', url, '-o', audio_filename])
+        wget.download(url, out=audio_filename)
+        #cmd = ['wget', 'limit-rate=100k', url, '-o', audio_filename]
+        #print(' '.join(cmd))
+        #subprocess.run(cmd)
+        #time.sleep(60)
     else:
         print("We already have this track.  Let's ignore.")
 
