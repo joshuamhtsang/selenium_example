@@ -58,7 +58,7 @@ for i in range(0, 100):
         #cmd = ['wget', 'limit-rate=100k', url, '-o', audio_filename]
         #print(' '.join(cmd))
         #subprocess.run(cmd)
-        #time.sleep(60)
+        time.sleep(10)
     else:
         print("We already have this track.  Let's ignore.")
 
