@@ -6,9 +6,9 @@ import subprocess
 import wget
 
 target_urls = [
-    "https://www.playlist.com/playlist/rock-90-s-edition?id=5b219e77c0a3e10004a443b0",
+    "https://www.playlist.com/playlist/top-50?id=5b57c297c1524302fd5079e3",
     "https://www.playlist.com/playlist/dance-faves?id=5be06d574047d50041bfb2db",
-    "https://www.playlist.com/playlist/top-50?id=5b57c297c1524302fd5079e3"
+    "https://www.playlist.com/playlist/rock-90-s-edition?id=5b219e77c0a3e10004a443b0"
 ]
 
 driver = webdriver.Chrome()
@@ -23,7 +23,7 @@ for target_url in target_urls:
     # Click on the 'Shuffle Play' button.
     driver.find_element_by_css_selector('.style__StyledPlayButton-pcl4lo-2.kyuMES').click()
 
-    for i in range(0, 150):
+    for i in range(0, 300):
         # Wait for webpage to load the audio src.
         time.sleep(30)
 
@@ -48,8 +48,11 @@ for target_url in target_urls:
         print("tag = ", tag)
 
         # Specify the index of video element in the web page
-        url = tag[0]['src']
-
+        try:
+            url = tag[0]['src']
+        except:
+            driver.get(target_url)
+            continue
         print("url = ", url)
 
         # Get metadata of track.
