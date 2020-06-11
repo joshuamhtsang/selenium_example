@@ -6,8 +6,8 @@ import subprocess
 import wget
 
 target_urls = [
-    "https://www.playlist.com/playlist/dance-faves?id=5be06d574047d50041bfb2db",
     "https://www.playlist.com/playlist/rock-90-s-edition?id=5b219e77c0a3e10004a443b0",
+    "https://www.playlist.com/playlist/dance-faves?id=5be06d574047d50041bfb2db",
     "https://www.playlist.com/playlist/top-50?id=5b57c297c1524302fd5079e3"
 ]
 
@@ -25,13 +25,13 @@ for target_url in target_urls:
 
     for i in range(0, 50):
         # Wait for webpage to load the audio src.
-        time.sleep(180)
+        time.sleep(30)
 
         # Try click on 'Shuffle Play'.
         try:
             # Click on the 'Shuffle Play' button.
             driver.find_element_by_css_selector('.style__StyledPlayButton-pcl4lo-2.kyuMES').click()
-            time.sleep(180)
+            time.sleep(30)
         except Exception as e:
             print("Nevermind...")
             print(e)
