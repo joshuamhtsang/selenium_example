@@ -24,6 +24,9 @@ for target_url in target_urls:
     driver.find_element_by_css_selector('.style__StyledPlayButton-pcl4lo-2.kyuMES').click()
 
     for i in range(0, 300):
+        print("\n Iteration = ", i)
+        print(" Target URL = ", target_url, "\n")
+
         # Wait for webpage to load the audio src.
         time.sleep(30)
 
