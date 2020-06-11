@@ -23,7 +23,7 @@ for target_url in target_urls:
     # Click on the 'Shuffle Play' button.
     driver.find_element_by_css_selector('.style__StyledPlayButton-pcl4lo-2.kyuMES').click()
 
-    for i in range(0, 50):
+    for i in range(0, 150):
         # Wait for webpage to load the audio src.
         time.sleep(30)
 
@@ -44,12 +44,13 @@ for target_url in target_urls:
         # Credit: https://dvenkatsagar.github.io/tutorials/python/2015/10/26/ddlv/
         src = driver.page_source
         parser = BeautifulSoup(src, "lxml")
-        tag = parser.find_all('audio')
-        print(tag)
+        tag = parser.find_all('audio', {"autoplay": True})
+        print("tag = ", tag)
 
         # Specify the index of video element in the web page
-        n = 2
-        url = tag[n]['src']
+        url = tag[0]['src']
+
+        print("url = ", url)
 
         # Get metadata of track.
         try:
