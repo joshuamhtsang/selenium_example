@@ -36,7 +36,7 @@ for target_url in target_urls:
             "order_number", "date", "time", "track_artist", "track_name", "list_name"))
         order_number = 1
         previous_trackName = "UNDEFINED"
-        for i in range(0, 400):
+        for i in range(0, 500):
             print("\n Iteration = ", i)
             print(" Target URL = ", target_url, "\n")
 
@@ -83,7 +83,7 @@ for target_url in target_urls:
             print(trackArtist)
 
             # Download the audio with metadata for file name.
-            audio_filename = "{}_{}.mp3".format(trackArtist, trackName)
+            audio_filename = "{}_{}_{}.mp3".format(trackArtist, trackName, current_playlist_name)
             if not os.path.exists(audio_filename):
                 print("Saving: ", audio_filename)
                 try:
